@@ -1,23 +1,17 @@
 package main
 
 import (
-	"os"
+	"github.com/alecthomas/kong"
 
 	"github.com/jmcveigh55/autocomplete/internal/autocomplete"
 )
 
+var cli struct {
+	File        string `arg:"" help:"The file containing all possible completions." type:"existingfile"`
+	PartialWord string `arg:"" help:"The query word fragment to be completed."`
+}
+
 func main() {
-	if len(os.Args) != 3 {
-		autocomplete.PrintUsage()
-		os.Exit(1)
-	}
-
-	if os.Args[1] == "-h" || os.Args[1] == "--help" {
-		autocomplete.PrintUsage()
-		os.Exit(0)
-	}
-
-	wordsFile := os.Args[1]
-	partialWord := os.Args[2]
-	autocomplete.Run(wordsFile, partialWord)
+	kong.Parse(&cli)
+	autocomplete.Run(cli.File, cli.PartialWord)
 }
