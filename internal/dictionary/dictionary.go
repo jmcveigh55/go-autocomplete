@@ -9,13 +9,13 @@ import (
 	"strings"
 )
 
-type entry struct {
+type Entry struct {
 	Word   string
 	Weight int
 }
 
 type Dictionary struct {
-	Entries []*entry
+	Entries []*Entry
 }
 
 func NewDictionary() *Dictionary {
@@ -50,7 +50,7 @@ func NewDictionaryFromFile(fileName string) *Dictionary {
 			os.Exit(1)
 		}
 
-		dictionary.Entries = append(dictionary.Entries, &entry{Word: entryWord, Weight: entryWeight})
+		dictionary.Entries = append(dictionary.Entries, &Entry{Word: entryWord, Weight: entryWeight})
 
 	}
 

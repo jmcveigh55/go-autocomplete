@@ -4,10 +4,10 @@ import "testing"
 
 func TestDictSortWordsAscendStrategy(t *testing.T) {
 	dict := NewDictionary()
-	dict.Entries = []*entry{
-		{"elephant", 2},
-		{"cat", 1},
-		{"dog", 3},
+	dict.Entries = []*Entry{
+		{Word: "elephant", Weight: 2},
+		{Word: "cat", Weight: 1},
+		{Word: "dog", Weight: 3},
 	}
 
 	dict.Sort(dict.SortWordsAscendStrategy)
@@ -27,10 +27,10 @@ func TestDictSortWordsAscendStrategy(t *testing.T) {
 
 func TestDictSortWordsDescendStrategy(t *testing.T) {
 	dict := NewDictionary()
-	dict.Entries = []*entry{
-		{"elephant", 2},
-		{"cat", 1},
-		{"dog", 3},
+	dict.Entries = []*Entry{
+		{Word: "elephant", Weight: 2},
+		{Word: "cat", Weight: 1},
+		{Word: "dog", Weight: 3},
 	}
 
 	dict.Sort(dict.SortWordsDescendStrategy)
@@ -50,10 +50,10 @@ func TestDictSortWordsDescendStrategy(t *testing.T) {
 
 func TestDictSortWeightsAscendStrategy(t *testing.T) {
 	dict := NewDictionary()
-	dict.Entries = []*entry{
-		{"elephant", 2},
-		{"cat", 1},
-		{"dog", 3},
+	dict.Entries = []*Entry{
+		{Word: "elephant", Weight: 2},
+		{Word: "cat", Weight: 1},
+		{Word: "dog", Weight: 3},
 	}
 
 	dict.Sort(dict.SortWeightsAscendStrategy)
@@ -73,10 +73,10 @@ func TestDictSortWeightsAscendStrategy(t *testing.T) {
 
 func TestDictSortWeightsDescendStrategy(t *testing.T) {
 	dict := NewDictionary()
-	dict.Entries = []*entry{
-		{"elephant", 2},
-		{"cat", 1},
-		{"dog", 3},
+	dict.Entries = []*Entry{
+		{Word: "elephant", Weight: 2},
+		{Word: "cat", Weight: 1},
+		{Word: "dog", Weight: 3},
 	}
 
 	dict.Sort(dict.SortWeightsDescendStrategy)
