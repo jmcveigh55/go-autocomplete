@@ -10,9 +10,15 @@ build:
 	go build -o $(BINDIR) ./cmd/...
 
 run:
+	@echo "Running..."
 	$(BINDIR)/$(TARGET) $(ARGS)
 
+test:
+	@echo "Testing..."
+	go test -cover ./internal/...
+
 clean:
+	@echo "Cleaning..."
 	$(RM) -r $(BINDIR)
 
 PHONY: all build run clean

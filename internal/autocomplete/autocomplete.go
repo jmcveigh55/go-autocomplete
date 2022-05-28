@@ -27,10 +27,10 @@ func Run(fileName, partialWord string) {
 		os.Exit(1)
 	}
 
-	dict := dictionary.NewDictionaryFromFile(fileName)
-	dict.Sort(dict.SortWordsAscendStrategy)
+	wordsDict := dictionary.NewDictionaryFromFile(fileName)
+	wordsDict.Sort(wordsDict.SortWordsAscendStrategy)
 
-	completionsDict := searchForCompletions(dict, partialWord)
+	completionsDict := searchForCompletions(wordsDict, partialWord)
 	completionsDict.Sort(completionsDict.SortWeightsDescendStrategy)
 
 	completionsDict.Print()
@@ -48,6 +48,7 @@ func validate(partialWord string) bool {
 func searchForCompletions(dict *dictionary.Dictionary, partialWord string) *dictionary.Dictionary {
 	completions := dictionary.NewDictionary()
 
+	// linear search -> O(n)
 	for _, entry := range dict.Entries {
 		if strings.HasPrefix(entry.Word, partialWord) {
 			completions.Entries = append(completions.Entries, entry)
