@@ -1,4 +1,4 @@
-package autocomplete
+package dictionary
 
 import (
 	"bufio"
@@ -10,12 +10,12 @@ import (
 )
 
 type entry struct {
-	word   string
-	weight int
+	Word   string
+	Weight int
 }
 
 type Dictionary struct {
-	entries []*entry
+	Entries []*entry
 }
 
 func NewDictionary() *Dictionary {
@@ -50,7 +50,7 @@ func NewDictionaryFromFile(fileName string) *Dictionary {
 			os.Exit(1)
 		}
 
-		dictionary.entries = append(dictionary.entries, &entry{word: entryWord, weight: entryWeight})
+		dictionary.Entries = append(dictionary.Entries, &entry{Word: entryWord, Weight: entryWeight})
 
 	}
 
@@ -58,27 +58,27 @@ func NewDictionaryFromFile(fileName string) *Dictionary {
 }
 
 func (d *Dictionary) Print() {
-	for i, entry := range d.entries {
-		fmt.Println("\t", i, entry.word, entry.weight)
+	for i, entry := range d.Entries {
+		fmt.Println("\t", i, entry.Word, entry.Weight)
 	}
 }
 
 func (d *Dictionary) Sort(strategy func(i, j int) bool) {
-	sort.Slice(d.entries, strategy)
+	sort.Slice(d.Entries, strategy)
 }
 
 func (d *Dictionary) SortWordsAscendStrategy(i, j int) bool {
-	return d.entries[i].word < d.entries[j].word
+	return d.Entries[i].Word < d.Entries[j].Word
 }
 
 func (d *Dictionary) SortWordsDescendStrategy(i, j int) bool {
-	return d.entries[i].word > d.entries[j].word
+	return d.Entries[i].Word > d.Entries[j].Word
 }
 
 func (d *Dictionary) SortWeightsAscendStrategy(i, j int) bool {
-	return d.entries[i].weight < d.entries[j].weight
+	return d.Entries[i].Weight < d.Entries[j].Weight
 }
 
 func (d *Dictionary) SortWeightsDescendStrategy(i, j int) bool {
-	return d.entries[i].weight > d.entries[j].weight
+	return d.Entries[i].Weight > d.Entries[j].Weight
 }

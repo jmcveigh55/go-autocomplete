@@ -6,6 +6,8 @@ import (
 	"os"
 	"strings"
 	"unicode"
+
+	"github.com/jmcveigh55/autocomplete/internal/dictionary"
 )
 
 func PrintUsage() {
@@ -25,10 +27,10 @@ func Run(fileName, partialWord string) {
 		os.Exit(1)
 	}
 
-	dictionary := NewDictionaryFromFile(fileName)
-	dictionary.Sort(dictionary.SortWordsAscendStrategy)
+	dict := dictionary.NewDictionaryFromFile(fileName)
+	dict.Sort(dict.SortWordsAscendStrategy)
 
-	completionsDict := searchForCompletions(dictionary, partialWord)
+	completionsDict := searchForCompletions(dict, partialWord)
 	completionsDict.Sort(completionsDict.SortWeightsDescendStrategy)
 
 	completionsDict.Print()
@@ -43,12 +45,12 @@ func validate(partialWord string) bool {
 	return true
 }
 
-func searchForCompletions(dictionary *Dictionary, partialWord string) *Dictionary {
-	completions := NewDictionary()
+func searchForCompletions(dict *dictionary.Dictionary, partialWord string) *dictionary.Dictionary {
+	completions := dictionary.NewDictionary()
 
-	for _, entry := range dictionary.entries {
-		if strings.HasPrefix(entry.word, partialWord) {
-			completions.entries = append(completions.entries, entry)
+	for _, entry := range dict.Entries {
+		if strings.HasPrefix(entry.Word, partialWord) {
+			completions.Entries = append(completions.Entries, entry)
 		}
 	}
 
